@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<script id="_questions" type="application/json">
+    {{questions|raw}}
+</script>
+
+<div id="app">
+    <app></app>
+</div>
+{% endblock %}
