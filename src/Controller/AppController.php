@@ -38,7 +38,7 @@ class AppController extends AbstractController
     }
 
     public function __construct(KernelInterface $kernel) {
-        $this->dataPath = $kernel->getProjectDir() . '/data';
+        $this->dataPath = $kernel->getProjectDir() . '/vendor/certificationy/symfony-pack/data';
         foreach($this->loadDataFiles() as $data) {
             $this->parseData($data);
         }
