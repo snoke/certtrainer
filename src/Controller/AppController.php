@@ -15,9 +15,14 @@ class AppController extends AbstractController
 {
     private KernelInterface $kernel;
     private array $questions;
+    private bool $shuffleQuestions = true;
+    private bool $shuffleCategories = true;
 
     private function parseData($data) {
         $this->questions[$data->name] = Yaml::parse($data->content);
+        if ($this->shuffleQuestions) {
+            shuffle($this->questions[$data->name]["questions"]);
+        }
     }
     
     private function loadDataFiles($fileExtension='.yml') {
@@ -36,6 +41,9 @@ class AppController extends AbstractController
         $this->dataPath = $kernel->getProjectDir() . '/data';
         foreach($this->loadDataFiles() as $data) {
             $this->parseData($data);
+        }
+        if ($this->shuffleCategories) {
+            shuffle($this->questions);
         }
     }
 
